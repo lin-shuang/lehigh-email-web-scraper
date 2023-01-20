@@ -1,0 +1,11 @@
+from pyPdf import PdfFileReader
+
+def get_pdf_content_lines(pdf_file_path):
+    with open(pdf_file_path) as f:
+        pdf_reader = PdfFileReader(f)
+        for page in pdf_reader.pages: 
+            for line in page.extractText().splitlines():
+                yield line
+
+for line in get_pdf_content_lines('/path/to/file.pdf'):
+    print line
